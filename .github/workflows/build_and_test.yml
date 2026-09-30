@@ -1,10 +1,11 @@
+---
 name: Build livox_sdk_vendor
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
   workflow_dispatch:
 
@@ -14,33 +15,33 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: ros:foxy
+    container: ros:jazzy
 
     steps:
-    - name: Check out repo
-      uses: actions/checkout@v2
+      - name: Check out repo
+        uses: actions/checkout@v4
 
-    - name: Install missing dependencies
-      run: |
-        sudo apt update
-        rosdep update
-        DEBIAN_FRONTEND=noninteractive rosdep install \
-          --default-yes \
-          --from-paths . \
-          --ignore-src \
-          --rosdistro foxy
+      - name: Install missing dependencies
+        run: |
+          sudo apt update
+          rosdep update
+          DEBIAN_FRONTEND=noninteractive rosdep install \
+            --default-yes \
+            --from-paths . \
+            --ignore-src \
+            --rosdistro jazzy
 
-    - name: Build
-      run: |
-        . /opt/ros/foxy/setup.sh
-        colcon build \
-          --event-handlers console_cohesion+ \
-          --packages-up-to livox_sdk_vendor
+      - name: Build
+        run: |
+          . /opt/ros/jazzy/setup.sh
+          colcon build \
+            --event-handlers console_cohesion+ \
+            --packages-up-to livox_sdk_vendor
 
-    - name: Run tests
-      run: |
-        . /opt/ros/foxy/setup.sh
-        colcon test \
-          --return-code-on-test-failure \
-          --event-handlers console_cohesion+ \
-          --packages-up-to livox_sdk_vendor
+      - name: Run tests
+        run: |
+          . /opt/ros/jazzy/setup.sh
+          colcon test \
+            --return-code-on-test-failure \
+            --event-handlers console_cohesion+ \
+            --packages-up-to livox_sdk_vendor

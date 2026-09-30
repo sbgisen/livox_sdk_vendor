@@ -2,17 +2,16 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>livox_sdk_vendor</name>
-  <version>0.0.1</version>
-  <description>
-    Wrapper around livox_sdk that ships with a CMake module
-  </description>
-  <maintainer email="esteve.fernandez@autoware.org">Esteve Fernandez</maintainer>
+  <version>0.1.0</version>
+  <description>Vendor package for Livox-SDK2</description>
+  <maintainer email="supratmanjoshua@gmail.com">Joshua Supratman</maintainer>
   <license>Apache License 2.0</license>
+  <license>MIT</license>
 
-  <url type="website">https://github.com/Livox-SDK/Livox-SDK</url>
-  <author email="esteve.fernandez@autoware.org">Esteve Fernandez</author>
+  <url type="website">https://github.com/Livox-SDK/Livox-SDK2</url>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_vendor_package</buildtool_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
